@@ -1,0 +1,145 @@
+%==============================================================================
+% book.tex
+%==============================================================================
+
+%------------------------------------------------------------------------------
+% \documentclass and \usepackage directives
+%------------------------------------------------------------------------------
+
+\documentclass[
+  pagesize,               % write pagesize to DVI or PDF
+  a4paper,                % use ISO A4
+  BCOR13mm,               % binding correction            
+  twoside,                % two sided (duplex)
+  1headlines,             % need only one line for the head
+  1footlines,             % need only one line for the foot
+  chapterprefix,
+  fleqn
+]{scrbook}
+
+% Internationalisation
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+% \usepackage[ngerman]{babel}
+% \usepackage{ngerman}
+
+% Different packages
+\usepackage[small,hang,bf]{caption2}
+\usepackage[nice]{nicefrac}
+\usepackage{color}
+
+% Compilation with pdflatex
+\ifpdfoutput{
+ 
+  \usepackage[pdftex]{graphicx}
+
+  \usepackage[
+    pdftex,
+    bookmarks,
+    pdfstartview=FitH,    % starts with page width
+    %bookmarksopen,       % opens index
+    bookmarksnumbered,    % index with numbering
+    colorlinks=true,      % links with color, otherwise with border
+    linkcolor=blue,       % standard: red
+    citecolor=blue,       % standard: green
+    urlcolor=magenta,     % standard: cyan
+    filecolor=blue,
+    pagecolor=blue,
+    menucolor=blue,
+    pdftitle={Title: Sub title},
+    pdfauthor={Your Name, <you@domain.net>},
+    pdfcreator={LaTeX2e, KOMA-Script (scrbook), hyperref},
+    pdfsubject={Subject},
+    pdfkeywords={PDF, Keywords}
+  ]{hyperref} 
+
+  % Use default Acrobat reader fonts
+%   \usepackage{mathpazo}
+
+  % Use CM fonts (increases document size)
+  \usepackage{ae}
+}
+% Compilation with latex
+{\usepackage{graphicx}}
+
+\graphicspath{{../figures/}}
+
+
+%------------------------------------------------------------------------------
+% Common configuration
+%------------------------------------------------------------------------------
+
+\pagestyle{headings}
+
+
+%------------------------------------------------------------------------------
+% Configure \maketitle
+%------------------------------------------------------------------------------
+
+\subject{Subject}
+\title{Title \\ Sub Title}
+\author{Your Name, <you@domain.net>}
+\date{\today}
+\publishers{Version 1.0}
+
+
+%------------------------------------------------------------------------------
+% Configure header and footer
+%------------------------------------------------------------------------------
+
+% \setheadtopline{2pt}
+% \setheadsepline{0.4pt}
+
+
+%------------------------------------------------------------------------------
+% Document
+%------------------------------------------------------------------------------
+
+\begin{document}
+
+\frontmatter
+
+% Title page
+\maketitle
+
+% Set page counter to zero
+\setcounter{page}{0}
+
+% Table of contents
+\tableofcontents
+%\listoftables
+%\listoffigures
+%\lstlistoflistings
+
+% Preface
+\chapter{Preface}
+
+Foo Bar.
+
+\mainmatter
+
+\chapter{One}
+\label{cha:one}
+
+\section{Foo}
+\label{sec:foo}
+
+Bar.
+
+\chapter{Two}
+\label{cha:two}
+
+\section{Foo}
+\label{sec:foo}
+
+Bar.
+
+\chapter{Three}
+\label{cha:three}
+
+\section{Foo}
+\label{sec:foo}
+
+Bar.
+
+\end{document}
