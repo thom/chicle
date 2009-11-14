@@ -1000,6 +1000,7 @@ docs-clean:
 	@echo --- Cleaning $(doc-dir) ---
 	@rm -f $(docfile-pod) $(docfile-man) $(docfile-ps) $(docfile-html) \
 		$(docfile-usage) $(docfile-txt)
+	@mkdir -p $(doc-dir)
 
 #
 # =item docs
