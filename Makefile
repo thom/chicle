@@ -1,7 +1,7 @@
 ##=============================================================================
 ## Makefile
 ##=============================================================================
-## Copyright (c) 2008 Thomas Weibel, <thom@beeblebrox.net>
+## Copyright (c) 2008-2009 Thomas Weibel, <thom@beeblebrox.net>
 ##
 ## This program is free software; you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -1205,7 +1205,7 @@ $(build-dir)/%:
 #
 # =head1 COPYRIGHT
 #
-# Copyright (c) 2008 Thomas Weibel, <thom@beeblebrox.net>
+# Copyright (c) 2008-2009 Thomas Weibel, <thom@beeblebrox.net>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
