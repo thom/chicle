@@ -121,7 +121,7 @@
 #
 # =item project-name
 # 
-# Sets the name of the project as used by the C<dist> target.
+# Sets the name of the project as used by the C<archive> target.
 project-name = chicle
 
 # 
@@ -135,17 +135,26 @@ document-name = book
 #
 # =item version 
 #
-# Sets the version number as used by the C<dist> target.
-version = 1.1
+# Sets the version number as used by the C<archive> target.
+version = 1.0
 
 #
-# =item dist-file-format
+# =item archive-type
 #
-# Sets the version format as used by the C<dist> target. Possible
+# Sets the file type as used by the C<archive> target. Possible values 
+# are I<tar.gz> and I<zip>.
+#
+# The default value is I<tar.gz>.
+archive-type = tar.gz
+
+#
+# =item archive-format
+#
+# Sets the version format as used by the C<archive> target. Possible
 # values are I<version>, I<date> and I<version-date>. 
 #
 # The default value is I<version>.
-dist-file-format = version
+archive-format = version
 
 #
 # =item paper-format
@@ -533,7 +542,7 @@ dvi-print = lpr
 .PHONY: default help man pdf ps dvi 2up 4up 8up \
 	print print-2up print-4up print-8up \
 	view view-2up view-4up view-8up \
-	preview all check dist clean tidy \
+	preview all check archive clean tidy \
 	docs-clean docs
 
 mainfile = $(source-dir)/$(document-name).tex
@@ -604,16 +613,16 @@ latexmk-call = $(latexmk1)
 endif
 
 ## Distribution file format
-ifeq "$(dist-file-format)" "version"
-dist-file = $(project-name)-$(version)
+ifeq "$(archive-format)" "version"
+archive-file = $(project-name)-$(version)
 endif
 
-ifeq "$(dist-file-format)" "date"
-dist-file = $(shell date +$(project-name)-%Y-%m-%d)
+ifeq "$(archive-format)" "date"
+archive-file = $(shell date +$(project-name)-%Y-%m-%d)
 endif
 
-ifeq "$(dist-file-format)" "version-date"
-dist-file = $(shell date +$(project-name)-$(version)-%Y-%m-%d)
+ifeq "$(archive-format)" "version-date"
+archive-file = $(shell date +$(project-name)-$(version)-%Y-%m-%d)
 endif
 
 #
@@ -852,15 +861,19 @@ check: $(source-dir)/$(document-name).check
 #
 # =over 10
 #
-# =item dist
+# =item archive
 #
 # Calls C<tidy> and creates an archive version of all distribution
 # files.
-dist: tidy
-	@echo --- Making $(dist-file).$(archive-ending) ---;
+archive: tidy
+	@echo --- Making $(archive-file).$(archive-type) ---;
 	@if test -d $(output-dir); then true; else mkdir $(output-dir); fi
-	@darcs dist --dist-name $(dist-file)
-	@mv $(dist-file).tar.gz $(output-dir)
+ifeq "$(archive-type)" "tar.gz"
+	@git archive --format=tar --prefix=$(archive-file)/ master | gzip >$(archive-file).tar.gz
+else
+	@git archive --format=zip --prefix=$(archive-file)/ master > $(archive-file).zip
+endif
+	@mv $(archive-file).$(archive-type) $(output-dir)
 
 
 #
