@@ -35,16 +35,26 @@ DESCRIPTION
     configurable (see "CONFIGURATION" for more information like default
     values and how to change them).
 
-    * GNU make
-    * LaTeX, pdfTeX and BibTeX
-    * latexmk Version 3.07a is provided in the bin/ directory.
+    *         GNU make
 
-    * ps2pdf, epstopdf and psnup
-    * PDF viewer (e.g. *xpdf*)
-    * PS viewer (e.g. *gv*)
-    * DVI viewer (e.g. *xdvi*)
-    * LaTeX checker (e.g. *lacheck*)
-    * Perl and *perl-doc*
+    *         LaTeX, pdfTeX and BibTeX
+
+    *         latexmk
+
+              Version 3.07a is provided in the bin/ directory.
+
+    *         ps2pdf, epstopdf and psnup
+
+    *         PDF viewer (e.g. *xpdf*)
+
+    *         PS viewer (e.g. *gv*)
+
+    *         DVI viewer (e.g. *xdvi*)
+
+    *         LaTeX checker (e.g. *lacheck*)
+
+    *         Perl and *perl-doc*
+
               Only used to create and recreate documentation. Not needed for
               normal use.
 
