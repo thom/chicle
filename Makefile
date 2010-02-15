@@ -1,7 +1,7 @@
 ##=============================================================================
 ## Makefile
 ##=============================================================================
-## Copyright (c) 2008-2009 Thomas Weibel, <thom@beeblebrox.net>
+## Copyright (c) 2008-2010 Thomas Weibel, <thom@beeblebrox.net>
 ##
 ## This program is free software; you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -83,7 +83,7 @@
 #
 # =item * latexmk
 #
-# Version 3.07a is provided in the F<bin/> directory.
+# Version 4.13a is provided in the F<bin/> directory.
 #
 # =item * ps2pdf, epstopdf and psnup
 #
@@ -136,7 +136,7 @@ document-name = book
 # =item version 
 #
 # Sets the version number as used by the C<archive> target.
-version = 1.0
+version = 2.0
 
 #
 # =item archive-type
@@ -1208,7 +1208,7 @@ $(build-dir)/%:
 #
 # =head1 VERSION
 #
-# B<Chicle> 1.0
+# B<Chicle> 2.0
 #
 #
 # =head1 AUTHOR
@@ -1218,7 +1218,7 @@ $(build-dir)/%:
 #
 # =head1 COPYRIGHT
 #
-# Copyright (c) 2008-2009 Thomas Weibel, <thom@beeblebrox.net>
+# Copyright (c) 2008-2010 Thomas Weibel, <thom@beeblebrox.net>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by

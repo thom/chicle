@@ -41,7 +41,7 @@ DESCRIPTION
 
     *         latexmk
 
-              Version 3.07a is provided in the bin/ directory.
+              Version 4.13a is provided in the bin/ directory.
 
     *         ps2pdf, epstopdf and psnup
 
@@ -65,18 +65,24 @@ DESCRIPTION
 CONFIGURATION
   Main configuration
     project-name
-              Sets the name of the project as used by the "dist" target.
+              Sets the name of the project as used by the "archive" target.
 
     document-name
               Sets the name of the main LaTeX file. This must be equal to
               the base name (without the .tex ending) of a LaTeX file in the
               source/ directory.
 
-    version   Sets the version number as used by the "dist" target.
+    version   Sets the version number as used by the "archive" target.
 
-    dist-file-format
-              Sets the version format as used by the "dist" target. Possible
-              values are *version*, *date* and *version-date*.
+    archive-type
+              Sets the file type as used by the "archive" target. Possible
+              values are *tar.gz* and *zip*.
+
+              The default value is *tar.gz*.
+
+    archive-format
+              Sets the version format as used by the "archive" target.
+              Possible values are *version*, *date* and *version-date*.
 
               The default value is *version*.
 
@@ -369,7 +375,7 @@ GENERAL TARGETS
     check     Checks the LaTeX source with "syntax-check".
 
   Distribution
-    dist      Calls "tidy" and creates an archive version of all
+    archive   Calls "tidy" and creates an archive version of all
               distribution files.
 
   Cleaning
@@ -431,13 +437,13 @@ ACKNOWLEDGEMENTS
         the newest version.
 
 VERSION
-    Chicle 1.0
+    Chicle 2.0
 
 AUTHOR
     Thomas Weibel, <thom@beeblebrox.net>
 
 COPYRIGHT
-    Copyright (c) 2008-2009 Thomas Weibel, <thom@beeblebrox.net>
+    Copyright (c) 2008-2010 Thomas Weibel, <thom@beeblebrox.net>
 
     This program is free software; you can redistribute it and/or modify it
     under the terms of the GNU General Public License as published by the
