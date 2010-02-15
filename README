@@ -1,0 +1,455 @@
+NAME
+    Chicle - a simple framework for writing and publishing LaTeX documents
+
+SYNOPSIS
+    make [default|all|pdf|ps|dvi|print|view|preview|...]
+
+    make help|man
+
+DESCRIPTION
+    Chicle is a simple framework for writing and publishing LaTeX documents.
+
+  What does chicle mean?
+    Chicle is the gum from Manilkara chicle, a species of sapodilla tree. It
+    is a tropical evergreen tree, native to in Central America and South
+    America. It is the traditional material used in chewing gum.
+
+    The tree is also grown for its fruit which is plum-sized and has a
+    translucent brown flesh. The tapping of the gum is similar to the
+    tapping of latex from the rubber tree. Zigzag gashes are made in the
+    tree trunk and the dripping gum is collected in small bags. Locals who
+    collect chicle are called chicleros. This is then boiled till it reaches
+    the correct thickness. Widespread tapping has lead to the tree becoming
+    scarce and other sources like the related Balatá (Manilkara bidentata)
+    are being increasingly used. Many modern chewing gums use petroleum
+    based plastic instead of chicle.
+
+    Chicle was well known to the Aztec and Maya Indians and the early
+    European settlers prized it for its subtle flavour and high sugar
+    content.
+
+    (Source: <http://en.wikipedia.org/wiki/Chicle>)
+
+  Requirements
+    Chicle needs some external programs to work. Most of them are
+    configurable (see "CONFIGURATION" for more information like default
+    values and how to change them).
+
+    *         GNU make
+
+    *         LaTeX, pdfTeX and BibTeX
+
+    *         latexmk
+
+              Version 3.07a is provided in the bin/ directory.
+
+    *         ps2pdf, epstopdf and psnup
+
+    *         PDF viewer (e.g. *xpdf*)
+
+    *         PS viewer (e.g. *gv*)
+
+    *         DVI viewer (e.g. *xdvi*)
+
+    *         LaTeX checker (e.g. *lacheck*)
+
+    *         Perl and *perl-doc*
+
+              Only used to create and recreate documentation. Not needed for
+              normal use.
+
+  Compatibility Note
+    The main test platform of Chicle is GNU Make 3.80 and teTeX 2.0.2 on
+    Debian and Ubuntu GNU/Linux.
+
+CONFIGURATION
+  Main configuration
+    project-name
+              Sets the name of the project as used by the "dist" target.
+
+    document-name
+              Sets the name of the main LaTeX file. This must be equal to
+              the base name (without the .tex ending) of a LaTeX file in the
+              source/ directory.
+
+    version   Sets the version number as used by the "dist" target.
+
+    dist-file-format
+              Sets the version format as used by the "dist" target. Possible
+              values are *version*, *date* and *version-date*.
+
+              The default value is *version*.
+
+    paper-format
+              Sets the default paper format used by "dvips" and "psnup".
+
+              The default value is *a4*.
+
+    quiet     Sets whether latexmk should be run with option *-quiet* or
+              not.
+
+              Possible values are *yes* and *no*. The default value is
+              *yes*.
+
+    force     Sets whether latexmk should be run with option *-f* or not.
+
+              Possible values are *yes* and *no*. The default value is
+              *yes*.
+
+    pdf-creation
+              Sets the command used to create a PDF version of the LaTeX
+              document.
+
+              Possible values are *pdflatex*, *dvipdf* and *ps2pdf*. The
+              default value is *pdflatex*.
+
+  Defaults
+    default-format
+              Sets the default format used by "make default" or "make".
+
+              Possible values are *pdf*, *ps* and *dvi*. The default value
+              is *pdf*.
+
+    default-nup-format
+              Sets the default format used by the "nup" targets.
+
+              Possible values are *pdf* and *ps*. The default value is
+              *pdf*.
+
+    default-view-format
+              Sets the default format used by the "view" targets.
+
+              Possible values are *pdf*, *ps* and *dvi*. The default value
+              is *pdf*.
+
+    default-preview-format
+              Sets the default format used by the "preview" target.
+
+              Possible values are *pdf*, *ps* and *dvi*. The default value
+              is *pdf*.
+
+    default-print-format
+              Sets the default format used by the "print" targets.
+
+              Possible values are *pdf*, *ps* and *dvi*. The default value
+              is *pdf*.
+
+  File names
+    readme-file
+              Sets the name of the 'Read me' file.
+
+              The default value is *README.chicle*.
+
+    make-file Sets the name of the Makefile.
+
+              The default value is *Makefile*.
+
+  Directory names
+    bib-dir   Sets the name of the directory containing the BibTeX files.
+
+              The default value is *bib*.
+
+    bin-dir   Sets the name of the directory containing additional programs
+              used by Chicle, like latexmk.
+
+              The default value is *bin*.
+
+    build-dir Sets the name of the directory used to build the document.
+              This is where all the intermediate files are saved to. The
+              build directory gets automatically created if needed.
+
+              The default value is *build*.
+
+    doc-dir   Sets the name of the documentation directory. This directory
+              is used by the "docs" target.
+
+              The default value is *doc*.
+
+    output-dir
+              Sets the name of the directory used to save the output files.
+              This is where all the generated files are saved to. The output
+              directory gets automatically created if needed.
+
+              The default value is *output*.
+
+    source-dir
+              Sets the name of the directory containing the LaTeX sources.
+
+              The default value is *source*.
+
+    styles-dir
+              Sets the name of the directory containing additional LaTeX
+              styles, e.g. .bst, .cls and .sty files.
+
+              The default value is *styles*.
+
+  Documentation
+    doc-style Sets the name of the CSS file used by *pod2html*. The path of
+              the file is relative to "doc-dir".
+
+              The default value is *style.css*.
+
+    doc-backlink
+              Sets the text used as backlink by *pod2html*.
+
+              The default value is *[ back to top ]*.
+
+  Programs
+    pdf-viewer
+              Sets the viewer used to view PDF files.
+
+              The default value is *xpdf*.
+
+    ps-viewer Sets the viewer used to view PS files.
+
+              The default value is *gv*.
+
+    dvi-viewer
+              Sets the viewer used to view DVI files.
+
+              The default value is *xdvi*.
+
+    dia       Sets the command used to convert .dia files to .eps files.
+
+              The default value is *dia -e*.
+
+    figtodev  Sets the program used to convert .fig files.
+
+              The default value is *fig2dev*.
+
+    giftopnm  Sets the program used to convert .gif files.
+
+              The default value is *giftopnm*.
+
+    pnmtopng  Sets the program used to convert .pnm files.
+
+              The default value is *pnmtopng*.
+
+    syntax-check
+              Sets the command used to check the syntax of LaTeX files.
+
+              The default value is *lacheck*.
+
+    latexmk   Sets the location of the latexmk script.
+
+              The default value is *$(bin-dir)/latexmk*.
+
+    latex     Sets the command used to process LaTeX files.
+
+              The default value is *latex*.
+
+    pdflatex  Sets the command used to create PDF files from LaTeX files.
+
+              The default value is *pdflatex*.
+
+    bibtex    Sets the command used to process BibTeX files.
+
+              The default value is *bibtex*.
+
+    makeindex Sets the command used to process index files.
+
+              The default value is *makeindex*.
+
+    dvips     Sets the command used to process DVI files.
+
+              The default value is *dvips -Ppdf -Z -t$(paper-format)*. This
+              helps to generate PostScript which converts better to PDF.
+
+    epstopdf  Sets the command used to convert EPS files to PDF.
+
+              The default value is *epstopdf*.
+
+    ps2pdf    Sets the command used to convert PS files to PDF.
+
+              The default value is *ps2pdf*.
+
+    psnup     Sets the command used to convert a PostScript document to a PS
+              file containing multiple pages per sheet.
+
+              The default value is *psnup -p$(paper-format)*.
+
+    pdf-print Sets the command used to print PDF files.
+
+              The default value is *lpr*.
+
+    ps-print  Sets the command used to print PS files.
+
+              The default value is *lpr*.
+
+    dvi-print Sets the command used to print DVI files.
+
+              The default value is *lpr*.
+
+GENERAL TARGETS
+  PDF, PS and DVI creation
+    default   Calls either the "pdf", "ps" or "dvi" target, depending on the
+              value of the variable "default-format".
+
+    all       Creates PDF, DVI and PS output.
+
+    pdf       Creates PDF output.
+
+    ps        Creates PS output.
+
+    dvi       Creates DVI output.
+
+  Multiple pages per sheet
+    '2up'     Creates PS or PDF output containing 2 pages per sheet.
+
+              To determine which output format to use, the variable
+              "default-nup-format" gets evaluated.
+
+    '4up'     Creates PS or PDF output containing 4 pages per sheet.
+
+              To determine which output format to use, the variable
+              "default-nup-format" gets evaluated.
+
+    '8up'     Creates PS or PDF output containing 8 pages per sheet.
+
+              To determine which output format to use, the variable
+              "default-nup-format" gets evaluated.
+
+  Print
+    print     Prints the translated LaTeX document as PDF, PS or DVI.
+
+              To determine which format should be used, the variable
+              "default-print-format" gets evaluated.
+
+    print-2up Prints the translated LaTeX document as PDF or PS containing 2
+              pages per sheet.
+
+              To determine which format should be used, the variable
+              "default-print-format" gets evaluated.
+
+    print-4up Prints the translated LaTeX document as PDF or PS containing 4
+              pages per sheet.
+
+              To determine which format should be used, the variable
+              "default-print-format" gets evaluated.
+
+    print-8up Prints the translated LaTeX document as PDF or PS containing 8
+              pages per sheet.
+
+              To determine which format should be used, the variable
+              "default-print-format" gets evaluated.
+
+  View
+    view      Opens the translated LaTeX document in "pdf-viewer",
+              "ps-viewer" or "dvi-viewer".
+
+              To determine which format should be used, the variable
+              "default-view-format" gets evaluated.
+
+    view-2up  Opens the translated LaTeX document in "pdf-viewer",
+              "ps-viewer" or "dvi-viewer" containing 2 pages per sheet.
+
+              To determine which format should be used, the variable
+              "default-view-format" gets evaluated.
+
+    view-4up  Opens the translated LaTeX document in "pdf-viewer",
+              "ps-viewer" or "dvi-viewer" containing 4 pages per sheet.
+
+              To determine which format should be used, the variable
+              "default-view-format" gets evaluated.
+
+    view-8up  Opens the translated LaTeX document in "pdf-viewer",
+              "ps-viewer" or "dvi-viewer" containing 8 pages per sheet.
+
+              To determine which format should be used, the variable
+              "default-view-format" gets evaluated.
+
+  Preview
+    preview   Previews the translatex LaTeX document and continuously
+              updates.
+
+              To determine which format should be used, the variable
+              "default-preview-format" gets evaluated.
+
+  Check
+    check     Checks the LaTeX source with "syntax-check".
+
+  Distribution
+    dist      Calls "tidy" and creates an archive version of all
+              distribution files.
+
+  Cleaning
+    clean     Removes intermediate and temporary files.
+
+    tidy      Removes intermediate, temporary and output files.
+
+PSEUDO FILE TARGETS
+  Conversion
+    %.pdf: %.eps
+              Converts .eps files to .pdf with "epstopdf".
+
+    %.eps: %.fig
+              Converts .fig files to .eps with "figtodev".
+
+    %.eps: %.dia
+              Converts .dia files to .eps with "dia".
+
+    %.pdf: %.fig
+              Converts .fig files to .pdf with "figtodev".
+
+    %.png: %.gif
+              Converts .gif files to .png with "giftopnm" and "pnmtopng".
+
+  Miscellaneous
+    %.check: %.tex
+              Checks .tex files with "syntax-check".
+
+DOCUMENTATION TARGETS
+  Help
+    help      Prints a short help message. Use the target "man" to view the
+              complete manual.
+
+    man       Shows the complete manual.
+
+  Documentation
+    docs-clean
+              Cleans the documentation directory.
+
+    docs      Creates documentation. This target needs Perl and and
+              *perl-doc* to generate the different documentation formats.
+
+SUPPORT
+    Contact the "AUTHOR".
+
+BUGS
+    Unknown
+
+ACKNOWLEDGEMENTS
+    Chicle is based on
+
+    Makefile.latex
+        by Thorsten Vitt <thvitt@gmx.de>, revision 1.16 from 2005/04/19. See
+        <http://www.informatik.hu-berlin.de/~vitt/latex/make> for the newest
+        version.
+
+    Dissertation Template
+        by David Coppit, version 0.23. See <http://www.coppit.org/code/> for
+        the newest version.
+
+VERSION
+    Chicle 1.0
+
+AUTHOR
+    Thomas Weibel, <thom@beeblebrox.net>
+
+COPYRIGHT
+    Copyright (c) 2008-2009 Thomas Weibel, <thom@beeblebrox.net>
+
+    This program is free software; you can redistribute it and/or modify it
+    under the terms of the GNU General Public License as published by the
+    Free Software Foundation; either version 2 of the License, or (at your
+    option) any later version.
+
+    This program is distributed in the hope that it will be useful, but
+    WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+    Public License for more details.
+
+    You should have received a copy of the GNU General Public License along
+    with this program; if not, write to the Free Software Foundation, Inc.,
+    59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+
