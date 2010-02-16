@@ -85,7 +85,7 @@
 #
 # Version 4.13a is provided in the F<bin/> directory.
 #
-# =item * ps2pdf, epstopdf and psnup
+# =item * ps2pdf, epstopdf, pdftops and pdfnup
 #
 # =item * PDF viewer (e.g. I<xpdf>)
 #
@@ -136,7 +136,7 @@ document-name = book
 # =item version 
 #
 # Sets the version number as used by the C<archive> target.
-version = 2.0
+version = 2.1
 
 #
 # =item archive-type
@@ -159,7 +159,7 @@ archive-format = version
 #
 # =item paper-format
 #
-# Sets the default paper format used by C<dvips> and C<psnup>. 
+# Sets the default paper format used by C<dvips> and C<pdfnup>. 
 #
 # The default value is I<a4>.
 paper-format = a4
@@ -496,13 +496,21 @@ epstopdf = epstopdf
 pstopdf = ps2pdf
 
 #
-# =item psnup
+# =item pdftops
 #
-# Sets the command used to convert a PostScript document to a PS file
+# Sets the command used to convert PDF files to PS.
+# 
+# The default value is I<pdftops>.
+pdftops = pdftops
+
+#
+# =item pdfnup
+#
+# Sets the command used to convert a PDF document to a PDF file
 # containing multiple pages per sheet.
 # 
-# The default value is I<psnup -p$(paper-format)>.
-psnup = psnup -p$(paper-format)
+# The default value is I<pdfnup --paper$(paper-format)>.
+pdfnup = pdfnup --paper $(paper-format)
 
 #
 # =item pdf-print
@@ -1092,27 +1100,27 @@ $(dvifile): $(dirs) $(build-dir)/latexmk.rc $(texfiles) $(bibfiles)
 	  ../$(latexmk-call) -r latexmk.rc ../$(mainfile)
 
 ## nup targets
-$(psfile-2up): $(psfile)
+$(pdffile-2up): $(pdffile)
 	@echo --- Making $@ ---
-	@$(psnup) -n 2 $< $@
+	@$(pdfnup) --nup "2x1" --outfile $@ $<
 
-$(psfile-4up): $(psfile)
+$(pdffile-4up): $(pdffile)
 	@echo --- Making $@ ---
-	@$(psnup) -n 4 $< $@
+	@$(pdfnup) --nup "2x2" --outfile $@ $<
 
-$(psfile-8up): $(psfile)
+$(pdffile-8up): $(pdffile)
 	@echo --- Making $@ ---
-	@$(psnup) -n 8 $< $@
+	@$(pdfnup) --nup "4x2" --outfile $@ $<
 
-$(pdffile-2up): $(psfile-2up)
-	@echo --- Making $@ ---
-	@$(pstopdf) $< $@
-
-$(pdffile-4up): $(psfile-4up)
+$(psfile-2up): $(pdffile-2up)
 	@echo --- Making $@ ---
 	@$(pstopdf) $< $@
 
-$(pdffile-8up): $(psfile-8up)
+$(psfile-4up): $(pdffile-4up)
+	@echo --- Making $@ ---
+	@$(pstopdf) $< $@
+
+$(psfile-8up): $(pdffile-8up)
 	@echo --- Making $@ ---
 	@$(pstopdf) $< $@
 
@@ -1208,7 +1216,7 @@ $(build-dir)/%:
 #
 # =head1 VERSION
 #
-# B<Chicle> 2.0
+# B<Chicle> 2.1
 #
 #
 # =head1 AUTHOR
